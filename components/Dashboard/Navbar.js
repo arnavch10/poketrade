@@ -2,13 +2,21 @@ import React from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
 import { Wallet } from "lucide-react";
+import { useRouter } from 'next/router';
 
 const Navbar = () => {
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push('/connectwallet');
+  };
+
+
   return (
     <Container>
       <Logo href="/">PokeTrade</Logo>
       <RightSection>
-        <ConnectButton>
+        <ConnectButton onClick={handleClick}>
           <Wallet size={16} />
           <span>Connect Wallet</span>
         </ConnectButton>
