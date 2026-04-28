@@ -9,7 +9,7 @@ const CardGrid = ({ cards = [] }) => {
     <GridWrapper>
       <Grid>
         {cards.map((card) => (
-          <Card key={card.id} card={card} />
+          <Card key={card.id} name={card.name} image={card.image} rarity={card.rarity} price={card.price} onBuy={() => card.onBuy?.(card.id)} />
         ))}
       </Grid>
     </GridWrapper>
