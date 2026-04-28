@@ -1,27 +1,17 @@
-/*
-This is the navbar component for both the landing page and the dashboard.
-
-The component includes the title of the app on the left
-and the login and signup links on the right.
-*/
 import React from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
 
-
-
 const Navbar = () => {
   return (
     <Container>
-        <Logo href="/">PokeTrade</Logo>
+      <Logo href="/">PokeTrade</Logo>
       <RightSection>
-        <LoginLink href="/auth/login/">Login</LoginLink>
-        <SignupLink href="/auth/signup/">Sign up</SignupLink>
+        <ConnectButton>Connect Wallet</ConnectButton>
       </RightSection>
     </Container>
   );
 };
-
 
 const Container = styled.header`
   width: 100%;
@@ -56,35 +46,19 @@ const Logo = styled(Link)`
   }
 `;
 
-const LoginLink = styled(Link)`
-  padding: 0.5rem 1rem;
+const ConnectButton = styled.button`
+  padding: 0.6rem 1.2rem;
   font-size: 0.875rem;
-  font-weight: 500;
-  color: #374151;
-  border: 1px solid #d1d5db;
-  border-radius: 9999px;
-  text-decoration: none;
+  font-weight: 600;
+  background-color: #facc15;
+  color: #000;
+  border: 2px solid #000; 
+  border-radius: 0;
+  cursor: pointer;
   transition: all 0.15s ease;
 
   &:hover {
-    background-color: #f9fafb;
-    border-color: #9ca3af;
-  }
-`;
-
-const SignupLink = styled(Link)`
-  padding: 0.5rem 1rem;
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: #000000;
-  background-color: #93c5fd;
-  border-radius: 9999px;
-  text-decoration: none;
-  box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.5);
-  transition: all 0.15s ease;
-
-  &:hover {
-    background-color: #dbeafe;
+    background-color: #fcd34d; 
   }
 `;
 
