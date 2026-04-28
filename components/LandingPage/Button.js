@@ -11,14 +11,14 @@ const ConnectWalletButton = () => {
     if (!address) {
       await connectWallet();
     } else {
-      router.push("/dashboard");
+      router.push("/marketplace");
     }
   };
 
   return (
     <Container>
       <ButtonStyled onClick={handleClick}>
-        {address ? "Go to Dashboard" : "Connect Wallet"}
+        {address ? "Go to Marketplace" : "Connect Wallet"}
       </ButtonStyled>
     </Container>
   );
