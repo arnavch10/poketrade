@@ -1,53 +1,24 @@
-import { useRouter } from 'next/router';
-import React, { createContext, useContext, useState, useEffect } from 'react';
-import { onIdTokenChanged, signOut } from 'firebase/auth';
-import {auth} from '@/backend/Firebase'
+import { createContext, useContext, useState } from "react";
+import { ethers } from "ethers";
 
-const Context = createContext();
+const StateContext = createContext();
 
-export const StateContext = ({ children }) => {
+export const StateContextProvider = ({ children }) => {
+  const [address, setAddress] = useState("");
 
-  // Variables to Carry Across Multiple Pages
-  const [user, setUser] = useState(undefined)
+  const connectWallet = async () => {
+    if (!window.ethereum) return alert("Install MetaMask");
 
-  const router = useRouter()
-  const { asPath } = useRouter()
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const accounts = await provider.send("eth_requestAccounts", []);
+    setAddress(accounts[0]);
+  };
 
-  // AUTHENTICATION REMEMBER ME USEEFFECT
-  useEffect(() => {
-    const unsubscribe = onIdTokenChanged(auth, (user) => {
-      if(user){
-        console.log('Token or user state changed:', user)
-        user.getIdToken().then((token) => {
-          console.log('New ID token:', token)
-        })
-        setUser(user)
-      } else {
-        setUser(null) //there is no user signed in
-      }
-    });
-    return () => unsubscribe();
-  }, []);
-
-  const signOutUser = async () => {
-    await signOut(auth);
-    setUser(null);
-    router.push("/auth/signup")
-  }
-
-
-
-return(
-    <Context.Provider
-    value={{
-        user,
-        setUser,
-        signOutUser
-    }}
-    >
+  return (
+    <StateContext.Provider value={{ address, connectWallet }}>
       {children}
-    </Context.Provider>
-    )
-}
+    </StateContext.Provider>
+  );
+};
 
-export const useStateContext = () => useContext(Context);
+export const useStateContext = () => useContext(StateContext);
