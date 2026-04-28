@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Button from "@/components/LandingPage/Button";
+import ConnectWalletButton from "@/components/LandingPage/Button";
 
 const Hero = () => {
   return (
@@ -39,7 +40,7 @@ const Hero = () => {
         </FlexRow>
 
         
-        <Button />
+        <ConnectWalletButton />
 
       </ContentWrapper>
 
