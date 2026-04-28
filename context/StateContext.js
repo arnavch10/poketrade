@@ -7,9 +7,15 @@ export const StateContextProvider = ({ children }) => {
   const [address, setAddress] = useState("");
 
   const connectWallet = async () => {
+
+    if (typeof window === "undefined") {
+      return;
+    }
+
+
     if (!window.ethereum) return alert("Install MetaMask");
 
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const provider = new ethers.BrowserProvider(window.ethereum);
     const accounts = await provider.send("eth_requestAccounts", []);
     setAddress(accounts[0]);
   };

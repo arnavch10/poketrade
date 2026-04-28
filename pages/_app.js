@@ -1,5 +1,5 @@
 import Head from 'next/head' //use instead of head
-import { StateContext } from "@/context/StateContext"
+import { StateContextProvider } from "@/context/StateContext"
 import { createGlobalStyle } from 'styled-components'
 
 
@@ -18,7 +18,7 @@ export default function App({ Component, pageProps }) {
   return (
     <>
         <Head>
-          <title>Travelify</title>
+          <title>PokeTrade</title>
           <meta name='description' content='Put a description here about your app'/>
           <meta name='robots' content='index, follow'/>
           <link rel="apple-touch-icon" sizes="180x180" href="/favicon_package/apple-touch-icon.png"/>
@@ -31,9 +31,9 @@ export default function App({ Component, pageProps }) {
 
         <GlobalStyle />
 
-      <StateContext>
+      <StateContextProvider>
         <Component {...pageProps} />
-      </StateContext>
+      </StateContextProvider>
     </>
   )
 }
