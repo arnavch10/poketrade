@@ -7,14 +7,25 @@ import React from "react";
 import styled from "styled-components";
 import Link from "next/link";
 import { useStateContext } from "@/context/StateContext";
+import { useRouter } from "next/router";
 
-const NavigateDashboard = () => {
-  const { user } = useStateContext();
+const ConnectWalletButton = () => {
+  const { address, connectWallet } = useStateContext();
+  const router = useRouter();
+
+  const handleClick = async () => {
+    if (!address) {
+      await connectWallet();
+    }
+    else {
+      router.push("/dashboard");
+    }
+  }
   return (
     <Container>
-      <TravelButton href={user ? "/dashboard" : "/auth/login"}>
-        Travel Now
-      </TravelButton>
+      <ButtonStyled onClick={handleClick}>
+        {address ? "Go to Dashboard" : "Connect Wallet"}
+      </ButtonStyled>
     </Container>
   );
 };
@@ -25,7 +36,7 @@ const Container = styled.div`
   margin-top: 2.5rem;
 `;
 
-const TravelButton = styled(Link)`
+const ButtonStyled = styled(Link)`
   background-color: #93c5fd;
   padding: 1.25rem 2.5rem;
   border-radius: 1rem;
@@ -40,4 +51,4 @@ const TravelButton = styled(Link)`
   }
 `;
 
-export default NavigateDashboard;
+export default ConnectWalletButton;
