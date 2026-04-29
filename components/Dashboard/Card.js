@@ -17,7 +17,8 @@ const Card = ({ name, image, rarity, price, onBuy }) => {
 
       <CardInfo>
         <CardName>{name}</CardName>
-        <CardPrice>{price} BNB</CardPrice>
+        <CardPrice>Price: {price} BNB</CardPrice>
+        <CardRarity>Rarity: {rarity}</CardRarity>
         <BuyButton onClick={onBuy}>Buy</BuyButton>
       </CardInfo>
     </CardWrapper>
@@ -27,17 +28,15 @@ const Card = ({ name, image, rarity, price, onBuy }) => {
 export default Card;
 
 const CardWrapper = styled.div`
-  background: #fef3c7; /* warm yellow background */
-  border-radius: 1rem;
+  background: #fef3c7;
+  border-radius: 0;
   padding: 1.25rem;
   width: 16rem;
-  box-shadow: 0px 8px 16px rgba(0,0,0,0.25);
+  border: 3px solid black;
+  box-shadow:
+    0 0 20px ${({ rarity }) => rarityColors[rarity] || "#9CA3AF"},
+    0px 8px 16px rgba(0,0,0,0.25);
 
-  /* rarity border glow */
-  border: 3px solid ${({ rarity }) => rarityColors[rarity] || "#9CA3AF"};
-  box-shadow: 0 0 20px
-    ${({ rarity }) => rarityColors[rarity] || "#9CA3AF"};
-  
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -46,8 +45,8 @@ const CardWrapper = styled.div`
 const ImageWrapper = styled.div`
   width: 100%;
   height: 12rem;
-  background: #fcd34d; 
-  border-radius: 0.75rem;
+  background: #fcd34d;
+  border-radius: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -72,6 +71,12 @@ const CardName = styled.h3`
 `;
 
 const CardPrice = styled.p`
+  font-size: 1rem;
+  margin-top: 0.5rem;
+  color: #4b5563;
+`;
+
+const CardRarity = styled.p`
   font-size: 1rem;
   margin-top: 0.5rem;
   color: #4b5563;
