@@ -83,17 +83,23 @@ const CardRarity = styled.p`
 `;
 
 const BuyButton = styled.button`
-  margin-top: 0.75rem;
-  padding: 0.6rem 1rem;
-  border-radius: 0.75rem;
-  border: none;
-  cursor: pointer;
-  background-color: #facc15;
-  font-weight: 600;
+  margin-top: 1rem;
+  padding: 0.8rem 1.2rem;
+  background: #ef4444; /* red */
   color: #1f2937;
+  font-weight: 800;
+  border: 3px solid #1f2937;
+  border-radius: 0;
+  cursor: pointer;
   transition: 0.2s ease;
-
+  box-shadow: 4px 4px 0px #1f2937;
   &:hover {
-    background-color: #fde047;
+    background: #f87171;
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px #1f2937;
+  }
+  &:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px #1f2937;
   }
 `;
