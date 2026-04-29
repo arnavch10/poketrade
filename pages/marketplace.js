@@ -29,6 +29,15 @@ const Marketplace = () => {
 
       for (let tokenId = 0; tokenId < totalNumber; tokenId++) {
         try {
+
+          // check for listed cards
+          const lists = await contract.listing(tokenId);
+
+          if (!lists.active) {
+            continue
+          }
+
+
           const tokenURI = await contract.tokenURI(tokenId);
           console.log("Token URI:", tokenURI);
 
