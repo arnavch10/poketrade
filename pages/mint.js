@@ -20,7 +20,7 @@ const BSC_TESTNET_PARAMS = {
 };
 
 const Mint = () => {
-    const CONTRACT_ADDRESS = "0x23EcD1cb9e30Be4E14282Db0D2385Dd3f5549299"; 
+    const CONTRACT_ADDRESS = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS; 
 
     const { address, connectWallet } = useStateContext();
 

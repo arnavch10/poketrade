@@ -3,7 +3,7 @@ import { ethers } from "ethers";
 import ABI from "../public/abi/PokeContract.json";
 const StateContext = createContext();
 
-const CONTRACT_ADDRESS = "0x23EcD1cb9e30Be4E14282Db0D2385Dd3f5549299";
+const CONTRACT_ADDRESS = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS;
 
 export const StateContextProvider = ({ children }) => {
   const [address, setAddress] = useState("");
