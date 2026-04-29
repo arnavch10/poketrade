@@ -6,7 +6,7 @@ import { uploadToPinata } from "./storage/storage.js";
 import ABI from "../public/abi/PokeContract.json";
 import { ethers } from "ethers";
 
-// BSC Testnet Configuration
+// swapping from eth to bsc solution 
 const BSC_TESTNET_PARAMS = {
     chainId: "0x61", // 97 in hexadecimal
     chainName: "BNB Smart Chain Testnet",
@@ -20,7 +20,6 @@ const BSC_TESTNET_PARAMS = {
 };
 
 const Mint = () => {
-    // Pasted from your Remix screenshot
     const CONTRACT_ADDRESS = "0x23EcD1cb9e30Be4E14282Db0D2385Dd3f5549299"; 
 
     const { address, connectWallet } = useStateContext();
@@ -40,7 +39,7 @@ const Mint = () => {
         setForm({ ...form, image: e.target.files[0] });
     };
 
-    // Helper to force MetaMask to the correct network
+    // switching network from eth to the testnet
     const switchNetwork = async () => {
         if (!window.ethereum) return;
         try {
@@ -49,7 +48,6 @@ const Mint = () => {
                 params: [{ chainId: BSC_TESTNET_PARAMS.chainId }],
             });
         } catch (error) {
-            // Error code 4902 means the network isn't added to MetaMask yet
             if (error.code === 4902) {
                 await window.ethereum.request({
                     method: "wallet_addEthereumChain",
@@ -63,16 +61,13 @@ const Mint = () => {
 
     const handleMint = async () => {
         try {
-            // 1. Ensure wallet is connected
             if (!address) {
                 await connectWallet();
                 return; 
             }
 
-            // 2. Ensure we are on BSC Testnet (Fixes the "ETH" popup issue)
             await switchNetwork();
 
-            // 3. Upload to IPFS via Pinata
             console.log("Uploading to Pinata...");
             const tokenURI = await uploadToPinata(form);
             
@@ -81,12 +76,10 @@ const Mint = () => {
                 return;
             }
 
-            // 4. Initialize Ethers and Contract
             const provider = new ethers.BrowserProvider(window.ethereum);
             const signer = await provider.getSigner();
             const contract = new ethers.Contract(CONTRACT_ADDRESS, ABI, signer);
 
-            // 5. Trigger the transaction
             console.log("Requesting Mint...");
             const tx = await contract.mintCard(tokenURI);
             
