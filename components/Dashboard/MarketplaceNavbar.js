@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import Link from 'next/link'
 import { useRouter } from 'next/router';
@@ -6,10 +6,11 @@ import { useStateContext } from '@/context/StateContext';
 
 const MarketplaceNavbar = ({ page = "marketplace" }) => {
     const router = useRouter();
-    const { setUser } = useStateContext();
+    const { setAddress, setContract } = useStateContext();
 
     const handleSignOut = () => {
-        setUser(null);
+        setAddress("");
+        setContract(null);
         router.push('/');
     }
 
