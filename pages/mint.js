@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useStateContext } from "@/context/StateContext";
 import MarketplaceNavbar from '@/components/Dashboard/MarketplaceNavbar';
-import { uploadToPinata } from "./storage/storage.js";
+import { uploadToPinata } from "../public/utils/storage.js";
 import ABI from "../public/abi/PokeContract.json";
 import { ethers } from "ethers";
 
