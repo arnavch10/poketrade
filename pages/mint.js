@@ -29,6 +29,7 @@ const Mint = () => {
         rarity: "common",
         price: "",
         image: null,
+        listNow: false
     });
 
     const handleChange = (e) => {
@@ -89,6 +90,25 @@ const Mint = () => {
             console.log("Minting successful! TokenURI:", tokenURI);
             alert("Success! Card Minted.");
 
+            // listing the card onto the marketplace
+            if (form.listNow) {
+                const tot = await contract.getTokenCount();
+                const tokenID = Number(tot) -1;
+                const priceInWei = ethers.parseEther(form.price);
+
+                console.log("Listing token:", tokenID);
+                const listTx = await contract.listCard(tokenID, priceInWei);
+
+                alert("Listing transaction sent! Waiting for confirmation...");
+                await listTx.wait();
+
+                alert("Success! Card minted and listed on marketplace.");
+                
+            }
+            else {
+                    alert("Success! Card minted to your inventory.");
+            }
+
         } catch (error) {
             console.error("Minting Error:", error);
             alert("Transaction failed or was rejected.");
@@ -127,6 +147,11 @@ const Mint = () => {
 
                 <Label>Card Image</Label>
                 <FileInput type="file" onChange={handleImage} />
+
+                <Label>
+                    <input type="checkbox" checked={form.listNow} onChange={(e) => setForm({...form, listNow: e.target.checked})}/>
+                    {" "} Listed on marketplace?
+                </Label>
 
                 <MintButton onClick={handleMint}>
                     {address ? "Mint Card" : "Connect Wallet"}
