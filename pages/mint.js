@@ -150,7 +150,7 @@ const Mint = () => {
 
                 <Label>
                     <input type="checkbox" checked={form.listNow} onChange={(e) => setForm({...form, listNow: e.target.checked})}/>
-                    {" "} Listed on marketplace?
+                    {" "} List on marketplace?
                 </Label>
 
                 <MintButton onClick={handleMint}>
