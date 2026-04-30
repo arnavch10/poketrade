@@ -31,18 +31,26 @@ const Container = styled.div`
 `;
 
 const ButtonStyled = styled.button`
-  background-color: #93c5fd;
-  padding: 1.25rem 2.5rem;
-  border-radius: 1rem;
+  background: #facc15;
+  color: #111827;
+  padding: 1rem 2.5rem;
+  border: 3px solid black;
+  border-radius: 0;
   cursor: pointer;
-  color: inherit;
-  border: none;
-  box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.5);
-  transition: background-color 0.15s ease;
-  font-size: 1.1rem;
-
+  font-size: 1.15rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 6px 6px 0 black;
+  transition: all 0.15s ease;
   &:hover {
-    background-color: #dbeafe;
+    background: #fef3c7;
+    transform: translate(3px, 3px);
+    box-shadow: 3px 3px 0 black;
+  }
+  &:active {
+    transform: translate(6px, 6px);
+    box-shadow: none;
   }
 `;
 
