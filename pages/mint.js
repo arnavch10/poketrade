@@ -231,9 +231,10 @@ const MintButton = styled.button`
   border-radius: 0;
   cursor: pointer;
   transition: 0.2s ease;
+  box-shadow: 4px 4px 0px #1f2937;
   &:hover {
     background: #fde047;
-    transform: translate(-2px, -2px);
-    box-shadow: 4px 4px 0px #1f2937;
+    transform: translate(2px, -2px);
+    box-shadow: 0px 0px 0px #000000;
   }
 `;
