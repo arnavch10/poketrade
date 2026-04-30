@@ -6,19 +6,6 @@ import { uploadToPinata } from "../public/utils/storage.js";
 import ABI from "../public/abi/PokeContract.json";
 import { ethers } from "ethers";
 
-// swapping from eth to bsc solution 
-const BSC_TESTNET_PARAMS = {
-    chainId: "0x61", // 97 in hexadecimal
-    chainName: "BNB Smart Chain Testnet",
-    nativeCurrency: {
-        name: "Binance Coin",
-        symbol: "tBNB",
-        decimals: 18,
-    },
-    rpcUrls: ["https://data-seed-prebsc-1-s1.binance.org:8545/"],
-    blockExplorerUrls: ["https://testnet.bscscan.com"],
-};
-
 const Mint = () => {
     const CONTRACT_ADDRESS = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS; 
 
@@ -40,34 +27,12 @@ const Mint = () => {
         setForm({ ...form, image: e.target.files[0] });
     };
 
-    // switching network from eth to the testnet
-    const switchNetwork = async () => {
-        if (!window.ethereum) return;
-        try {
-            await window.ethereum.request({
-                method: "wallet_switchEthereumChain",
-                params: [{ chainId: BSC_TESTNET_PARAMS.chainId }],
-            });
-        } catch (error) {
-            if (error.code === 4902) {
-                await window.ethereum.request({
-                    method: "wallet_addEthereumChain",
-                    params: [BSC_TESTNET_PARAMS],
-                });
-            } else {
-                throw error;
-            }
-        }
-    };
-
     const handleMint = async () => {
         try {
             if (!address) {
                 await connectWallet();
                 return; 
             }
-
-            await switchNetwork();
 
             console.log("Uploading to Pinata...");
             const tokenURI = await uploadToPinata(form);
@@ -79,13 +44,14 @@ const Mint = () => {
 
             const provider = new ethers.BrowserProvider(window.ethereum);
             const signer = await provider.getSigner();
+            const network = await provider.getNetwork();
+            console.log("Current chainId:", network.chainId);
             const contract = new ethers.Contract(CONTRACT_ADDRESS, ABI, signer);
 
             console.log("Requesting Mint...");
             const tx = await contract.mintCard(tokenURI);
             
             alert("Transaction sent! Waiting for confirmation...");
-            await tx.wait();
 
             console.log("Minting successful! TokenURI:", tokenURI);
             alert("Success! Card Minted.");
@@ -106,11 +72,10 @@ const Mint = () => {
                 
             }
             else {
-                    alert("Success! Card minted to your inventory.");
+                alert("Success! Card minted to your inventory.");
             }
 
         } catch (error) {
-            console.error("Minting Error:", error);
             alert("Transaction failed or was rejected.");
         }
     };
@@ -163,7 +128,6 @@ const Mint = () => {
 
 export default Mint;
 
-// Styled Components
 const Container = styled.div`
   min-height: 100vh;
   background: #fff7cc;
