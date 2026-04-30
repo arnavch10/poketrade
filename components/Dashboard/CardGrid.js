@@ -4,12 +4,12 @@ import Card from "./Card";
 
 
 
-const CardGrid = ({ cards = [] }) => {
+const CardGrid = ({ cards = [], onBuy }) => {
   return (
     <GridWrapper>
       <Grid>
         {cards.map((card) => (
-          <Card key={card.id} name={card.name} image={card.image} rarity={card.rarity} price={card.price} onBuy={() => card.onBuy?.(card.id)} />
+          <Card key={card.tokenId} name={card.name} image={card.image} rarity={card.rarity} price={card.price} onBuy={() => onBuy(card.tokenId, card.price)} />
         ))}
       </Grid>
     </GridWrapper>
