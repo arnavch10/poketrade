@@ -19,7 +19,7 @@ const Card = ({ name, image, rarity, price, onBuy }) => {
         <CardName>{name}</CardName>
         <CardPrice>Price: {price} BNB</CardPrice>
         <CardRarity>Rarity: {rarity}</CardRarity>
-        <BuyButton onClick={onBuy}>Buy</BuyButton>
+        {onBuy && <BuyButton onClick={onBuy}>Buy</BuyButton>}
       </CardInfo>
     </CardWrapper>
   );
