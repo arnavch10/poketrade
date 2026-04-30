@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { ethers } from "ethers";
 import MarketplaceNavbar from '@/components/Dashboard/MarketplaceNavbar';
 import ABI from "../public/abi/PokeContract.json"
+import CardGrid from '@/components/Dashboard/CardGrid';
 const Inventory = () => {
     const CONTRACT_ADDRESS = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS;
 
