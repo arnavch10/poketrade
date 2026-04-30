@@ -23,6 +23,9 @@ const MarketplaceNavbar = ({ page = "marketplace" }) => {
         }
     }
 
+    const goToInventory = () => {
+      router.push("/inventory");
+    }
 
   return (
     <Container>
@@ -30,7 +33,7 @@ const MarketplaceNavbar = ({ page = "marketplace" }) => {
 
       <RightSection>
 
-        <InventoryButton>
+        <InventoryButton onClick={goToInventory}>
           Inventory
         </InventoryButton>
         <PageButton onClick={handlePage}>
