@@ -59,7 +59,7 @@ const Marketplace = () => {
             name: metadata.name,
             image: metadata.image,
             rarity,
-            price,
+            price: ethers.formatEther(lists.price),
           });
         } catch (err) {
           console.log(`Error loading token ${tokenId}:`, err);
@@ -76,11 +76,36 @@ const Marketplace = () => {
     loadCards();
   }, []);
 
+
+  // buying a card
+
+
+  const buyCard = async (tokenId, price) => {
+    try {
+      if (!window.ethereum) {
+        return;
+      }
+
+      const provider = new ethers.BrowserProvider(window.ethereum);
+      const signer = await provider.getSigner();
+      const contract = new ethers.Contract(CONTRACT_ADDRESS, ABI, signer);
+      
+      const tx = await contract.buyCard(tokenId, {value: ethers.parseEther(price)});
+      alert("Buying card");
+      await tx.wait();
+      alert("Card bought!");
+      loadCards();
+
+    } catch (err) {
+      console.log("Unable to purchase card!");
+    }
+  }
+
   return (
     <Container>
       <MarketplaceNavbar page="marketplace" />
       <Title>Marketplace</Title>
-      <CardGrid cards={cards} />
+      <CardGrid cards={cards} onBuy={(tokenId, price) => buyCard(tokenId, price)} />
     </Container>
   );
 };
