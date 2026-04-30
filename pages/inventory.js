@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from "styled-components";
 import { ethers } from "ethers";
 import MarketplaceNavbar from '@/components/Dashboard/MarketplaceNavbar';
