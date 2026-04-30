@@ -29,6 +29,10 @@ const MarketplaceNavbar = ({ page = "marketplace" }) => {
       <Logo href="/marketplace">PokeTrade</Logo>
 
       <RightSection>
+
+        <InventoryButton>
+          Inventory
+        </InventoryButton>
         <PageButton onClick={handlePage}>
           Go to {page === "mint" ? "Marketplace" : "Mint"}
         </PageButton>
@@ -97,6 +101,21 @@ const PageButton = styled(BaseButton)`
     box-shadow: 2px 2px 0px black;
   }
 
+  &:active {
+    transform: translate(3px, 3px);
+    box-shadow: 0px 0px 0px black;
+  }
+`;
+
+const InventoryButton = styled(BaseButton)`
+  background-color: #facc15;
+  color: black;
+  box-shadow: 3px 3px 0px black;
+  &:hover {
+    background-color: #fde047;
+    transform: translate(1px, 1px);
+    box-shadow: 2px 2px 0px black;
+  }
   &:active {
     transform: translate(3px, 3px);
     box-shadow: 0px 0px 0px black;
