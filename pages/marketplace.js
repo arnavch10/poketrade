@@ -31,7 +31,7 @@ const Marketplace = () => {
         try {
 
           // check for listed cards
-          const lists = await contract.listing(tokenId);
+          const lists = await contract.listings(tokenId);
 
           if (!lists.active) {
             continue
