@@ -1,7 +1,6 @@
 import Hero from "@/components/LandingPage/Hero";
 import styled from "styled-components";
 import Navbar from "@/components/Dashboard/Navbar";
-import Footer from "@/components/LandingPage/Footer";
 
 export default function Home() {
   return (
@@ -10,7 +9,6 @@ export default function Home() {
       <Main>
         <Hero />
       </Main>
-      <Footer />
     </LandingPageContainer>
   );
 }
@@ -23,4 +21,5 @@ const LandingPageContainer = styled.div`
 
 const Main = styled.main`
   flex: 1;
+  display: flex;
 `;
