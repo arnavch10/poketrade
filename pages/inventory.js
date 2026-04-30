@@ -11,26 +11,44 @@ const Inventory = () => {
 
     const getInventory = async () => {
         try {
-            const provider = new ethers.BrowserProvider(window.etheruem);
+            const provider = new ethers.BrowserProvider(window.ethereum);
             const signer = await provider.getSigner();
 
             const contract = new ethers.Contract(CONTRACT_ADDRESS, ABI, provider);
+
+            // get current user
+            const userAdd = await signer.getAddress();
+
 
             const tot = await contract.getTokenCount();
             const totNum = Number(tot);
 
             const invenCards = [];
 
-            for (let tokenID = 0; tokenID < totNum; tokenID++) {
+            for (let tokenId = 0; tokenId < totNum; tokenId++) {
                 try {
 
-                    const tokenURI = await contract.tokenURI(tokenID);
+
+                    // check for user
+                    const owner = await contract.ownerOf(tokenId);
+
+                    if (owner.toLowerCase() !== userAdd.toLowerCase()) {
+                        continue;
+                    }
+
+                    // get listing of the minted cards
+                    const list = await contract.listings(tokenId);
+                    if (list.active) {
+                        continue;
+                    }   
+
+                    const tokenURI = await contract.tokenURI(tokenId);
                     const metadata = await fetch(tokenURI).then((res) => res.json());
                     const rarity = metadata.attributes?.find(
                     (attr) => attr.trait_type.toLowerCase() === "rarity")?.value || "common";
 
                     invenCards.push({
-                        tokenID, 
+                        tokenId, 
                         name: metadata.name,
                         image: metadata.image,
                         rarity,
