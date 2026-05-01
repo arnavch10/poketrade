@@ -8,7 +8,7 @@ const rarityColors = {
   legendary: "#FACC15",
 };
 
-const Card = ({ name, image, rarity, price, onBuy }) => {
+const Card = ({ name, image, rarity, price, onBuy, isOwner }) => {
   return (
     <CardWrapper rarity={rarity}>
       <ImageWrapper>
@@ -19,7 +19,7 @@ const Card = ({ name, image, rarity, price, onBuy }) => {
         <CardName>{name}</CardName>
         <CardPrice>Price: {price} BNB</CardPrice>
         <CardRarity>Rarity: {rarity}</CardRarity>
-        {onBuy && <BuyButton onClick={onBuy}>Buy</BuyButton>}
+        {!isOwner && onBuy && <BuyButton onClick={onBuy}>Buy</BuyButton>}
       </CardInfo>
     </CardWrapper>
   );
