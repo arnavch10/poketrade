@@ -9,6 +9,7 @@ const CONTRACT_ADDRESS = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS;
 
 const Marketplace = () => {
   const [cards, setCards] = useState([]);
+  const [currentUser, setCurrentUser] = useState("");
 
   const loadCards = async () => {
     try {
@@ -19,6 +20,9 @@ const Marketplace = () => {
 
       const provider = new ethers.BrowserProvider(window.ethereum);
       const contract = new ethers.Contract(CONTRACT_ADDRESS, ABI, provider);
+
+      const signer = await provider.getSigner();
+      const currentUser = await signer.getAddress();
 
       const total = await contract.getTokenCount();
       const totalNumber = Number(total);
@@ -60,6 +64,7 @@ const Marketplace = () => {
             image: metadata.image,
             rarity,
             price: ethers.formatEther(lists.price),
+            seller: lists.seller
           });
         } catch (err) {
           console.log(`Error loading token ${tokenId}:`, err);
@@ -67,9 +72,11 @@ const Marketplace = () => {
       }
 
       setCards(loadedCards);
+      setCurrentUser(currentUser);
     } catch (err) {
       console.error("Error loading marketplace cards:", err);
     }
+
   };
 
   useEffect(() => {
@@ -105,7 +112,7 @@ const Marketplace = () => {
     <Container>
       <MarketplaceNavbar page="marketplace" />
       <Title>Marketplace</Title>
-      <CardGrid cards={cards} onBuy={(tokenId, price) => buyCard(tokenId, price)} />
+      <CardGrid cards={cards} onBuy={(tokenId, price) => buyCard(tokenId, price)} currentUser={currentUser} />
     </Container>
   );
 };
