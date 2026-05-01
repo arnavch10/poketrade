@@ -1,3 +1,10 @@
+/*
+This is the  navbar component.
+
+This component essentially has a button that takes the user to a select connect wallet page, where the user can connect to their wallet.
+*/
+
+
 import React from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';

@@ -1,6 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
+/*
+This is the card component. This is what defines what each indiviual card looks like
+The card component also has a buy button and displays the buy button if the user is currently logged in or not
+*/
+
 const rarityColors = {
   common: "#9CA3AF",
   rare: "#3B82F6",

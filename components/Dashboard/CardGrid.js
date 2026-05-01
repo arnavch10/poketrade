@@ -2,6 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import Card from "./Card";
 
+/*
+This is the cardgrid component that is displayed in the marketplace that places the cards generated in a grid format
+
+This page also makes sure that cards on the marketplace don't have a buy button if the user that currently minted the cards is logged in.
+*/
 
 
 const CardGrid = ({ cards = [], onBuy, currentUser }) => {

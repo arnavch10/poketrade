@@ -1,3 +1,8 @@
+/*
+This is the templete home.js file
+
+*/
+
 import React from 'react';
 import Link  from 'next/link';
 import { IoMdHome } from 'react-icons/io'; // Importing a home icon from react-icons

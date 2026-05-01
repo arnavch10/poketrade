@@ -1,3 +1,11 @@
+/*
+This is the hero component of the application
+This is used in the landing page in conjunction with the connectwallet button that connects a user through their metamask wallet
+
+The hero component features every graphics all showcasing the theme of the application
+
+*/
+
 import React from "react";
 import styled from "styled-components";
 import ConnectWalletButton from "@/components/LandingPage/Button";

@@ -1,3 +1,8 @@
+/*
+This is the Button component that allows the user to connect directly to the marketplace and application
+
+*/
+
 import React from "react";
 import styled from "styled-components";
 import { useStateContext } from "@/context/StateContext";

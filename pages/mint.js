@@ -1,3 +1,12 @@
+
+/*
+This is the mint page. This is also where the minting and listing on a marketplace functionality of the card works
+
+Cards can be minted here and the metadata of the card is the uploaded to Pinata.
+
+*/
+
+
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useStateContext } from "@/context/StateContext";

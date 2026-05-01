@@ -1,3 +1,9 @@
+/*
+This is the connect wallet page. This page basically just has a button that prompts the user to connect to Metamask.
+
+*/
+
+
 import React from 'react'
 import styled from 'styled-components'
 import Navbar from '@/components/Dashboard/Navbar'
@@ -79,7 +85,6 @@ const Panel = styled.div`
 
   background: #ffffff;
 
-  /* 🔥 sharp + bold */
   border: 2px solid black;
   border-radius: 0;
 
@@ -114,7 +119,7 @@ const ConnectButton = styled.button`
   font-size: 15px;
   font-weight: 600;
 
-  background: #facc15; /* yellow */
+  background: #facc15;
   color: black;
 
   border: 2px solid black;
@@ -122,7 +127,6 @@ const ConnectButton = styled.button`
 
   cursor: pointer;
 
-  /* 🔥 sharp offset shadow */
   box-shadow: 4px 4px 0px black;
 
   transition: all 0.1s ease;

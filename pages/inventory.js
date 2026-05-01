@@ -1,3 +1,14 @@
+/*
+This is the inventory page. It works similarly to the marketplace page except the cards are only
+listed here if the user does not select the list on marketplace option in the mint page.
+
+When a user buys a card, the card is also displayed here and removed from the market.
+
+
+
+*/
+
+
 import React, { useEffect, useState } from 'react'
 import styled from "styled-components";
 import { ethers } from "ethers";

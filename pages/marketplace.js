@@ -1,3 +1,13 @@
+/*
+This is the marketplace page. THe page also defines the buying a card functioanlity.
+
+
+Users can buy cards that they have not minted in this page. When they buy a card, the card goes to their inventory.
+
+*/
+
+
+
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { ethers } from "ethers";
