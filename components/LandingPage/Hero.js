@@ -31,7 +31,7 @@ const Hero = () => {
               <CardArt></CardArt>
 
               <CardInfo>
-                <CardRarity>ULTRA RARE</CardRarity>
+                <CardRarity>SUPER RARE</CardRarity>
                 <CardText>Ancient blockchain collectible</CardText>
               </CardInfo>
             </CardPreview>
@@ -126,7 +126,7 @@ const GraphicWrapper = styled.div`
 const CardPreview = styled.div`
   width: 20rem;
   height: 28rem;
-  background: #93c5fd;
+  background: purple;
   border: 4px solid black;
   border-radius: 0;
   padding: 1.5rem;
