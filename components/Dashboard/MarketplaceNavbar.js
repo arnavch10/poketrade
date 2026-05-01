@@ -4,6 +4,13 @@ import Link from 'next/link'
 import { useRouter } from 'next/router';
 import { useStateContext } from '@/context/StateContext';
 
+/*
+This is the marketplace navbar component.
+
+Very similar to the regular navbar component, but incorporates the more page navigation
+that is essential for the application to function
+*/
+
 const MarketplaceNavbar = ({ page = "marketplace" }) => {
     const router = useRouter();
     const { setAddress, setContract } = useStateContext();
