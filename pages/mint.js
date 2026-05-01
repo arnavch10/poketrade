@@ -50,6 +50,7 @@ const Mint = () => {
 
             console.log("Requesting Mint...");
             const tx = await contract.mintCard(tokenURI);
+            await tx.wait();
             
             alert("Transaction sent! Waiting for confirmation...");
 
